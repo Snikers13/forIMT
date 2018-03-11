@@ -1,23 +1,24 @@
 var nodemailer = require('nodemailer');
 
-nodemailer.SMTP = {
-    host: 'gmail.com', 
-    port: 587,
-    use_authentication: true, 
-    user: 'for.anton.tretyak13@gmail.com', 
-    pass: 'A0938162653'
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'for.anton.tretyak@gmail.com',
+    pass: 'T0938162653'
+  }
+});
+
+var mailOptions = {
+  from: 'for.anton.tretyak@gmail.com',
+  to: 'for.anton.tretyak@gmail.com, ltaisiya98@gmail.com',
+  subject: 'Sending Email using Node.js',
+  html: '<h2>That was easy</h2>'
 };
 
-var message = {
-	sender: "sender@domain.com",
-	to: 'for.anton.tretyak13@gmail.com',
-	subject: '',
-	html: '<h1>test</h1>',
-};
-
-     nodemailer.send_mail(message,   
-      function(err) {   
-        if (!err) { 
-            console.log('Email send ...');
-        } else console.log(sys.inspect(err));       
-    });
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
