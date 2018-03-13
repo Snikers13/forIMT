@@ -29,7 +29,6 @@ http.createServer(function (req, res) {
 }).listen(port, function () {
 	console.log('Go to localhost: 3000');
 });
-//пробовал еще с es6 делать, как-то в es5 (как по мне) 
 
 //number two, i use npm install nodemon -g & nodemon app.js;
 
