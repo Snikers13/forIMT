@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>валюты Приват Банка</h2>
+
+<p id="demo"></p>
+
+<script>
+	//пока что так, другого решения не придумал, в консоле ошибка, НО РАБОТАЕТ :) . На выходных подумаю, что можно с этим сделать.
+let text = '{"value":[' +
+'{"ccy":"EUR","base_ccy":"UAH","buy":"31.89246","sale":"32.40086"},' +
+'{"ccy":"RUR","base_ccy":"UAH","buy":"0.45793","sale":"0.45939"},' +
+'{"ccy":"USD","base_ccy":"UAH","buy":"25.92461","sale":"26.09395"},' +
+'{"ccy":"BTC","base_ccy":"USD","buy":"8614.3994","sale":"9521.1782"}]}';
+
+let obj = JSON.parse(text);
+let i = document.getElementById("demo");
+	for (let i in text) {
+		console.log(obj.value[i].ccy + " " + obj.value[i].base_ccy + " " + obj.value[i].buy + " " + obj.value[i].sale);
+	}
+</script>
+
+</body>
+</html>
