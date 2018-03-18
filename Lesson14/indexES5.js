@@ -1,5 +1,6 @@
 //number 1
 var http = require('http');
+var request = require('request');
 var port = 3000;
 var fs = require('fs');
 
@@ -22,7 +23,23 @@ http.createServer(function (req, res) {
 			res.write(data);
 			res.end();
 		});
+	}
+	else if (req.url === '/json') { //number 3
+		var options = {
+ 		 method: 'post',
+  		 json: true, // Use,If you are sending JSON data
+   		 url: 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3',
+	}
 
+		request(options, function (err, res, body) {
+  		if (err) {
+    		console.log('Error :', err)
+    			return;
+  		}
+  	console.log(body);
+
+});
+	
 	} else if (req.url === '/stop') {
 		server.close();
 	}
@@ -32,11 +49,9 @@ http.createServer(function (req, res) {
 
 //number two, i use npm install nodemon -g & nodemon app.js;
 
-//Асинхронная версия number-a 3
-fs.readFile('./file.json', 'utf8', function (err, data) {
-   			if (err) throw err; 
-    			var obj = JSON.parse(data);
-    			console.log(obj);
-});
+
+
+
+
 
 // number 4 в index.html
